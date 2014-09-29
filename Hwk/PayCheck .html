@@ -1,0 +1,102 @@
+<script>
+	/*
+	Juan Vargas 
+	Sept. 27, 2014
+	CIS javascript 48076
+	*/
+</script>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pay Check</title>
+</head>
+<body>
+
+<h1>Pay Check Table</h1>
+<table border="6">
+        <tr>
+            <th style="font-family: Aapex ;font-size:30px"  colspan="5">Pay Check Table</th>
+        </tr>
+ 
+        <tr>
+        	<th style="font-family: Aapex ;font-size:18px">Hours</th>
+            <th style="font-family: Aapex ;font-size:18px">Pay Rate $/hour</th>
+            <th style="font-family: Aapex ;font-size:18px">Gross Pay</th>
+            <th style="font-family: Aapex ;font-size:18px">Taxes at 10%</th>
+            <th style="font-family: Aapex ;font-size:18px">Net Pay</th>
+         </tr>
+         
+<script type="text/javascript">
+		//Setting up table
+		
+		var pay  = 10;      //10$ per hour
+		var dbt  = 20;     //Doubletime
+		var trt  = 30;     //Triple time
+		var str  =" ";       //Stores output
+		
+		//Declaring Arrays
+		var payRate = [];
+		var gross   = [];
+		var taxes   = [];
+		var hours   = [];
+		var netPay  = [];
+		
+		for(var i = 0; i <= 72; i ++){
+		//Declaring Arrays
+			hours[i] = i;
+			payRate[i] = pay;
+			gross[i] = hours[i] * pay;
+			taxes[i] = gross[i] * .10;
+			netPay[i] = gross[i] - taxes[i];
+			
+		//Double time if statement
+			if(i > 20){
+			payRate[i] = dbt;
+			//Gross pay array double time
+			gross[i] = 200 + (i - 20) * dbt ;
+			//Taxes double time
+			taxes[i] = gross[i] * .10; 
+			//Netpay double time
+			netPay[i] = gross[i] - taxes[i];
+			}//End of dbt
+			
+		//Triple time if statement
+			if(i > 40){
+			payRate[i] = trt;
+			//Fill gross pay array triple time
+			gross[i] = 600 + (i - 40) * trt ;
+			//Fill taxes triple time
+			taxes[i] = gross[i] * .10; 
+			//Fill netpay triple time
+			netPay[i] = gross[i] - taxes[i];
+			}//End if triple time
+		}//End for loop
+		
+		
+		//Output initial conditions
+		
+		document.write("<p>Dollars Per Hour Straight Time =  $"+10+"</p>");
+		document.write("<p>Double Time Start =  "+20+" hours</p>");
+		document.write("<p>Triple Time Start  =  "+40+" hours</p>");
+		
+		//Generate a table
+		
+			//Table print statement
+			for(var i = 0; i <= 72; i ++){
+			str+=("<tr>") ;
+			str+=("<td>" + hours[i] + "</td>");			
+			str+=("<td>" +payRate[i]+ "</td>");
+			str+=("<td>" +gross[i]+ "</td>");
+			str+=("<td>" +taxes[i]+ "</td>");
+			str+=("<td>" +netPay[i]+ "</td>");
+			str+=("</tr>") ;
+			}
+		
+		document.write(str);
+	</script>
+</table>
+
+
+</body>
+</html>
